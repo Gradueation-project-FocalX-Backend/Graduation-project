@@ -4,8 +4,11 @@
 - Downlaod the project.
 
 #commands to use before run project.
+<br>
 1- composer update.
+<br>
 2-change the name of file ( .env.example ) TO => (.env).
+<br>
 3- php artisan key:generate .
 
 
@@ -15,11 +18,12 @@
 Example: you have 3 main commands to write.
 
 
--- Extends the constants ( Navbar , Sidebar , Footer) of the dashboard to each blade file we create using :
-  --->      @extends('dashboard')
+- Extends the constants ( Navbar , Sidebar , Footer) of the dashboard to each blade file we create using :
+    @extends('dashboard')
 
 
---change the *title* of your blade file if you need usiog :  @section('title', 'you file title')  
+- change the *title* of your blade file if you need usiog :
+  @section('title', 'you file title')  
 
 EX : @section ('title' , 'Add new user')
 
