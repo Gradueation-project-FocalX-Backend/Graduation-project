@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -58,4 +59,11 @@ class CustomerController extends Controller {
         $customer->delete();
         return response()->json(['message' => 'Customer deleted successfully'], 204);
     }
+=======
+use Illuminate\Http\Request;
+
+class CustomerController extends Controller
+{
+    //
+>>>>>>> 0d7c677 (leen's update)
 }
