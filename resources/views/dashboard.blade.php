@@ -185,10 +185,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-outline-secondary">Log out <i class="fa-solid fa-power-off ml-2"></i></button>
-                            </form>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Example
+                                    <span class="right badge badge-primary">New</span>
+                                </p>
+                            </a>
                         </li>
                     </ul>
                 </nav>
