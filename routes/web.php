@@ -23,10 +23,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-<<<<<<< HEAD
-
-=======
->>>>>>> 0d7c677 (leen's update)
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
