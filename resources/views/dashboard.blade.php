@@ -8,15 +8,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Focal X | Graduation Backend</title>
+    <title>@yield('title', 'Focal X | Graduation Backend')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}" />
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}" />
+
+    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -258,7 +261,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Starter Page</h1>
+                            <h1 class="m-0">@yield('title', ' Home page')</h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
@@ -279,7 +282,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-
+                        @yield('content')
                     </div>
                     <!-- /.row -->
                 </div>
@@ -319,6 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>
