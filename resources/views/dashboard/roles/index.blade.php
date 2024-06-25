@@ -8,19 +8,16 @@
     <table class="table table-hover">
         <thead>
             <th>#ID</th>
-            <th>User Name</th>
-            <th>Email</th>
+            <th>Role Name</th>
             <th></th>
         </thead>
         <tbody>
-            @forelse ($users as $user)
+            @forelse ($roles as $role)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
+                    <td>{{ $role->name }}</td>
                     <td>
-                        <a href="#" class="btn btn-info"><i class="fa-solid fa-info"></i></a>
-                        <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a>
+                        <a href="{{ route('roles.edit', ['role' => $role]) }}" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a>
                         <form action="#" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
@@ -31,7 +28,7 @@
                 <?php $i++ ; ?>
             @empty
             <tr>
-                <td colspan="4">Empty data</td>
+                <td colspan="3">Empty data</td>
             </tr>
             @endforelse
         </tbody>

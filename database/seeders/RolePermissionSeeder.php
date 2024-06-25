@@ -47,5 +47,16 @@ class RolePermissionSeeder extends Seeder
                 }
             }
         }
+
+        $additional_permissions =['Permission revoke', 'Permission assign'];
+
+        foreach($additional_permissions as $per)
+        {
+            $permission = Permission::create([
+                'name' => $per,
+                'guard_name' => 'web',
+            ]);
+            $role_admin->givePermissionTo($per);
+        }
     }
 }
