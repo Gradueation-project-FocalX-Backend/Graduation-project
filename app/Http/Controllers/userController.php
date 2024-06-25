@@ -14,7 +14,6 @@ class userController extends Controller
   public function index()
   {
     $users = User::all();
-
     return view('dashboard.users.index', compact('users'));
   }
 
@@ -59,7 +58,7 @@ class userController extends Controller
   public function show(User $user)
   {
 
-    return view('user.show', compact('user'));
+    return view('users.show', compact('user'));
   }
 
   /**

@@ -31,5 +31,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /**
  * Route Users 
  * Resource
+ * GET (index , show , create , edit )  / POST (store) / DELETE (destroy) / PUT (update)
  * */ 
 Route::resource('users', userController::class);

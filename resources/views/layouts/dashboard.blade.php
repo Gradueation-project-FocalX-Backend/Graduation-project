@@ -246,9 +246,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <div class="content">
-                <div class="container-fluid">
+                <div class="container-fluid bg-white rounded p-5 shadow-lg">
                     <div class="row">
-                        @yield('content')
+                        
+                        @yield('content' , 'The content of the dashboard')
                     </div>
                     <!-- /.row -->
                 </div>
