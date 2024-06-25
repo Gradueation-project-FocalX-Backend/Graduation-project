@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\App\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,8 +25,8 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-
 Route::get('aram', function() {
     return "aram";
-})->middleware('auth:customer-api');
+})->name('aram')->middleware('auth:customer-api');
+
 Route::apiResource('customers', CustomerController::class);
