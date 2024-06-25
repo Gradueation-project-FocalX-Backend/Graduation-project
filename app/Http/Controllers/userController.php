@@ -1,102 +1,102 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
-    /**
-     *to show all Users
-     **/
-    public function index()
-    {
-       $users = User::all();
-       
-         return view('users.index',compact('users'));
-    }
+  /**
+   *to show all Users
+   **/
+  public function index()
+  {
+    $users = User::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('users.create');
-    }
+    return view('dashboard.users.index', compact('users'));
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-      $request->validate([
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    // return view('users.create');
+  }
 
-            'name'=>'required',
-            'email'=>'requierd|email|unique:users',
-            'passwoard'=>'required|min:8',
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(Request $request)
+  {
+    $request->validate([
 
-         ]);
+      'name' => 'required',
+      'email' => 'requierd|email|unique:users',
+      'passwoard' => 'required|min:8',
+
+    ]);
 
 
-      $user=new User([
+    $user = new User([
 
-        'name'=>$request->get('name'),
-        'email'=>$request->get('email'),
-        'password'=>Hash::make($request->password),
+      'name' => $request->get('name'),
+      'email' => $request->get('email'),
+      'password' => Hash::make($request->password),
 
-         ]);  
+    ]);
 
-         $user->save();
+    $user->save();
 
-         return redirect('\users')->with('success','User has een added');
-     
-    }
+    return redirect()->route('users.index')->with('success', 'User has been added');
+  }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
+  /**
+   * Display the specified resource.
+   */
+  public function show(User $user)
+  {
 
-        return view('user.show', compact('user'));
-    }
+    return view('user.show', compact('user'));
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        return view('user.edit', compact('user'));
-    }
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(User $user)
+  {
+    // return view('user.edit', compact('user'));
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-           $request->validate([
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(Request $request, User $user)
+  {
+    $request->validate([
 
-                'name' =>'required',
-                'email' =>'required|email|unique:users,email,'.$user->id,
-                'password'=>'nullable|min:8',
-           ]);
+      'name' => 'required',
+      'email' => 'required|email|unique:users,email,' . $user->id,
+      'password' => 'nullable|min:8',
+    ]);
 
-           $user->update([
+    $user->update([
 
-                'name'=> $request->name,
-                'email'=>$request->email,
-                'password'=>$request->password? Hash::make($request->password):$user->password,
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => $request->password ? Hash::make($request->password) : $user->password,
 
-           ]);
-           return redirect()->route('user.index');
-    }
-    /**
-      * Remove the specified resource from storage.
-     */
-        public function destroy(User $user)
-        {
-               $user->delete();
-               return redirect()->route('user.index');
-    }
+    ]);
+    return redirect()->route('users.index');
+  }
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(User $user)
+  {
+    $user->delete();
+    return redirect()->route('users.index');
+  }
 }
