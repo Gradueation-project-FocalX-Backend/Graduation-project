@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware(['auth', 'permission:User show'])->only(['index', 'show']);
+    $this->middleware(['auth', 'permission:User create'])->only(['create', 'store']);
+    $this->middleware(['auth', 'permission:User update'])->only(['edit', 'update']);
+    $this->middleware(['auth', 'permission:User delete'])->only(['destroy']);
+  }
   /**
    *to show all Users
    **/
@@ -23,7 +31,7 @@ class userController extends Controller
    */
   public function create()
   {
-    // return view('users.create');
+    return view('dashboard.users.create');
   }
 
   /**
@@ -67,7 +75,7 @@ class userController extends Controller
    */
   public function edit(User $user)
   {
-    // return view('user.edit', compact('user'));
+    return view('dashboard.users.edit', compact('user'));
   }
 
   /**
