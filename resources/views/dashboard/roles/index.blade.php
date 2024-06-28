@@ -18,7 +18,7 @@
                     <td>{{ $role->name }}</td>
                     <td>
                         <a href="{{ route('roles.edit', ['role' => $role]) }}" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a>
-                        <form action="#" method="POST" class="d-inline">
+                        <form action="{{ route('roles.delete', ['id' => $role->id]) }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>

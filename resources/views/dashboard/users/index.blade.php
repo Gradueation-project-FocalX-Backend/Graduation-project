@@ -4,6 +4,9 @@
 
 @section('content')
 
+    <div class="mb-4">
+        <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user <i class="fa-solid fa-plus ml-2"></i></a>
+    </div>
     <?php $i = 1; ?>
     <table class="table table-hover">
         <thead>

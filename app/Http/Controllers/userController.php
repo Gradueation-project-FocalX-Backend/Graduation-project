@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class userController extends Controller
 {
@@ -31,7 +32,8 @@ class userController extends Controller
    */
   public function create()
   {
-    return view('dashboard.users.create');
+    $roles = Role::all();
+    return view('dashboard.users.create', compact('roles'));
   }
 
   /**
@@ -39,12 +41,11 @@ class userController extends Controller
    */
   public function store(Request $request)
   {
+    $roles = $request->roles;
     $request->validate([
-
       'name' => 'required',
       'email' => 'requierd|email|unique:users',
-      'passwoard' => 'required|min:8',
-
+      'passwoard' => 'required|min:8|confirmed',
     ]);
 
 
@@ -53,11 +54,10 @@ class userController extends Controller
       'name' => $request->get('name'),
       'email' => $request->get('email'),
       'password' => Hash::make($request->password),
-
     ]);
 
     $user->save();
-
+    $user->roles()->sync($roles);
     return redirect()->route('users.index')->with('success', 'User has been added');
   }
 
@@ -87,7 +87,7 @@ class userController extends Controller
 
       'name' => 'required',
       'email' => 'required|email|unique:users,email,' . $user->id,
-      'password' => 'nullable|min:8',
+      'password' => 'nullable|min:8|confirmed',
     ]);
 
     $user->update([

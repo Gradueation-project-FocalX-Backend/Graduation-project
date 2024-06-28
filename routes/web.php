@@ -38,10 +38,17 @@ Route::resource('users', userController::class);
 
 /**
  * Route Roles
- * 
+ * index : return list of all roles
+ * create : return form view of create new role
+ * store : insert new role
+ * revoke and assgin permission role form/to role
+ * destroy : delete role
  */
 
 Route::get('roles', [RoleController::class , 'index'])->name('roles.index');
+Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
+Route::post('roles', [RoleController::class, 'store'])->name('roles.store');
 Route::get('roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
 Route::put('/roles/{role}/assign-permission/{id}', [RoleController::class, 'assignPermission'])->name('role.assign-permission');
 Route::put('/roles/{role}/revoke-permission/{id}', [RoleController::class, 'revokePermission'])->name('role.revoke-permission');
+Route::delete('roles/{id}' , [RoleController::class, 'destroy'])->name('roles.delete');
